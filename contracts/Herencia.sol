@@ -3,24 +3,25 @@ pragma solidity ^0.4.17;
 contract Mortal { 
     address public owner;
 
+    //Constructor
     function Mortal() public {
         owner = msg.sender;
     } 
 
+    //Destruye el contrato, jamas se podra usar
     function kill() onlyOwner() public {
         selfdestruct(owner);
     }
 
+    //Unicamente el owner
     modifier onlyOwner() {
-        if (owner != msg.sender) {
-            revert(); 
-        } else {
-            _;
-        }
+        require(owner == msg.sender);
+        _;
     }
 }
 
-contract User { 
+//Hereda de Mortal
+contract User is Mortal { 
     string public userName;
 
     function User(string _userName) public {
@@ -28,7 +29,8 @@ contract User {
     } 
 }
 
-contract Provider { 
+//Hereda de Mortal
+contract Provider is Mortal { 
     string public providerName;
 
     function Provider(string _providerName) public {
