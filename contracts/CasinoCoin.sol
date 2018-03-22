@@ -17,12 +17,12 @@ contract CoinFlip {
     }
     
     modifier onlyOwner {
-		if (msg.sender != owner) {
-			revert();
-		} else {
-			_;
-		}
-	}
+        if (msg.sender != owner) {
+            revert();
+        } else {
+            _;
+        }
+    }
     
     //Logica para ganar algo de dinerus!!
     function flipCoin() public payable {
@@ -45,5 +45,5 @@ contract CoinFlip {
     function kill() public onlyOwner {
         Status("Contracted Killed, not longer available to use", msg.sender, this.balance);
         selfdestruct(owner);
-	}
+    }
 }

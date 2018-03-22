@@ -45,29 +45,28 @@ contract ToothFairy {
     
     //Modificador: Unicamente el hijo
     modifier onlyChild {
-		if (msg.sender != child) {
-			revert();
+        if (msg.sender != child) {
+            revert();
 		} else {
-			_;
+            _;
 		}
-	}
+    }
     
     //Modificador: Unicamente el hada
     modifier onlyFairy {
-		if (msg.sender != toothFairy) {
-			revert();
+        if (msg.sender != toothFairy) {
+            revert();
 		} else {
-			_;
-		}
-	}
+            _;
+        }
+    }
 	
     //Modificador: Unicamente la madre
-	modifier onlyMother {
-		if (msg.sender != mother) {
-			revert();
+    modifier onlyMother {
+        if (msg.sender != mother) {
+            revert();
 		} else {
-			_;
-		}
-	}
-
+            _;
+        }
+    }
 }
